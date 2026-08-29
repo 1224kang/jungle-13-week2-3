@@ -16,10 +16,6 @@
 입력: [4, 3, 2, 7, 8, 2, 3, 1]
 출력: [2, 3]
 
-힌트:
-- 방법1: 이중 반복문 (O(n²) 시간, O(1) 공간)
-- 방법2: 정렬 후 탐색 (O(n log n) 시간, O(1) 공간)
-- 방법3: 해시 집합 사용 (O(n) 시간, O(n) 공간)
 """
 
 def find_duplicates_brute_force(nums):
@@ -30,10 +26,13 @@ def find_duplicates_brute_force(nums):
     """
     duplicates = []
     n = len(nums)
-    
-    # TODO: 이중 반복문으로 중복 찾기
-    ## i번째 원소와 i+1 이후의 모든 원소를 비교
-    ## 같은 원소를 찾으면 duplicates에 추가 (중복 추가 방지 필요)
+
+    for i in range(len(nums)):
+        for j in range(i+1,len(nums)):
+            if nums[i]==nums[j] and nums[i] not in duplicates:
+                duplicates.append(nums[i])
+                break
+   
     pass
     
     return duplicates
@@ -46,14 +45,18 @@ def find_duplicates_sorting(nums):
     """
     if not nums:
         return []
-    
-    # TODO: 배열을 정렬하세요 (nums.sort() 사용)
+
+    duplicates=[]
+    nums.sort()
+    for i in range(len(nums)-1):
+        if nums[i]==nums[i+1] and nums[i] not in duplicates:
+            duplicates.append(nums[i])
+
+   
     pass
     
-    duplicates = []
     
-    # TODO: 인접한 원소를 비교하여 중복 찾기
-    # i와 i+1 원소가 같고, duplicates에 없으면 추가
+    
     pass
     
     return duplicates
@@ -64,12 +67,18 @@ def find_duplicates_hash(nums):
     시간 복잡도: O(n)
     공간 복잡도: O(n)
     """
-    seen = set()
+    seen = set() #이미 한번씩 본 애들 
     duplicates = set()
+
+    for num in nums:
+        if num in seen:
+            duplicates.add(num)
+        else:
+            seen.add(num)
+        
+
     
-    # TODO: 각 원소를 순회하면서
-    ## 이미 seen에 있으면 duplicates에 추가
-    ## 없으면 seen에 추가
+   
     pass
     
     return list(duplicates)
