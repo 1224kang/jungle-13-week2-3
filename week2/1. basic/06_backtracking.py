@@ -33,6 +33,11 @@ def combinations(n: int, k: int) -> list:
     Returns:
         모든 조합을 담은 리스트(예: [[1,2], [1,3], ...])
     """
+
+    for i in range (1,n):
+       backtrack(i,[])
+       
+
     result = []  # 완성된 조합을 모아 둘 곳
 
     def backtrack(start: int, current_combination: list) -> None:
@@ -43,6 +48,9 @@ def combinations(n: int, k: int) -> list:
             start: 이번에 시도해볼 수 있는 가장 작은 숫자
             current_combination: 지금까지 골라 둔 숫자들 (탐색 중)
         """
+
+        
+                
 
       
         pass  

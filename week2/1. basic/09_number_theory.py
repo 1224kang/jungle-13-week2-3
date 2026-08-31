@@ -19,9 +19,7 @@
   GCD = 6
   LCM = 144
 
-힌트:
-- 유클리드 호제법: gcd(a, b) = gcd(b, a % b)
-- LCM 공식: lcm(a, b) = (a × b) / gcd(a, b)
+
 """
 
 def gcd(a, b):
@@ -34,9 +32,13 @@ def gcd(a, b):
     Returns:
         최대공약수
     """
-    # TODO: 유클리드 호제법 구현
-    # base case: b가 0이면 a 반환
-    # recursive를 이용 
+
+    if b==0:
+        return a
+
+    return gcd(b,a%b)
+
+     
     pass
 
 def gcd_iterative(a, b):
@@ -49,8 +51,19 @@ def gcd_iterative(a, b):
     Returns:
         최대공약수
     """
-    # TODO: 반복문으로 구현
-    # b가 0이 될 때까지 반복
+
+    if a>b:
+            bigger=a
+            smaller=b
+    else:
+        bigger=b
+        smaller=a
+    
+    while smaller!=0:
+        bigger=smaller
+        smaller=bigger%smaller
+
+    return smaller
     pass
 
 def lcm(a, b):
@@ -63,7 +76,9 @@ def lcm(a, b):
     Returns:
         최소공배수
     """
-    # TODO: LCM 계산
+
+    return a*b//gcd(a,b)
+
     pass
 
 def extended_gcd(a, b):
@@ -77,10 +92,7 @@ def extended_gcd(a, b):
     Returns:
         (gcd, x, y) 튜플
     """
-    # TODO: 확장 유클리드 호제법 구현
-    # base case: b가 0이면 (a, 1, 0) 반환    
-    # recursive case
-    # 역추적하며 x, y 계산
+
     pass
 
 def is_prime(n):
@@ -90,13 +102,19 @@ def is_prime(n):
     Args:
         n: 판별할 양의 정수
     
+    
     Returns:
         소수이면 True, 아니면 False
     """
-    # TODO: 소수 판별 구현
-    # n이 2보다 작으면 False
-    # 2부터 sqrt(n)까지 나누어 떨어지는지 확인    
-    # 3부터 sqrt(n)까지 홀수만 확인
+
+    if n%2==0:
+        return False
+    for i in range(1,n+1):
+        if n%i==0:
+            return False
+
+    return True
+
     pass 
 
 # 테스트 케이스

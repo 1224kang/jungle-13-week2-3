@@ -18,10 +18,7 @@
 처리: 문서B
 처리: 문서C
 
-힌트:
-- 파이썬에서는 리스트로 큐 구현 가능
-- append(): 뒤에 추가 (enqueue)
-- pop(0): 앞에서 제거 (dequeue)
+
 """
 
 from collections import deque
@@ -36,14 +33,15 @@ def process_print_queue(jobs):
     Returns:
         처리된 작업 리스트
     """
-    # TODO: deque로 큐 생성
     queue = deque(jobs)
     
     processed = []
-    
-    # TODO: 큐가 비어있지 않은 동안 반복
-    ## 큐에서 작업 꺼내기
-    ## 작업 처리 (출력 및 리스트에 추가)
+
+    while len(queue)>0:
+        output=queue.popleft()
+        print(f"처리: {output}")
+        processed.append(output)
+
     pass
     
     return processed

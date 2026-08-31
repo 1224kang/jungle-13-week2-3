@@ -47,7 +47,7 @@ def find_duplicates_sorting(nums):
         return []
 
     duplicates=[]
-    nums.sort()
+    nums.sort() #정렬 후 정렬의 특성 이용해서 다시 풀기. 
     for i in range(len(nums)-1):
         if nums[i]==nums[i+1] and nums[i] not in duplicates:
             duplicates.append(nums[i])
