@@ -24,10 +24,6 @@
 평균 점수: 85.0
 최고 점수: Bob (92점)
 
-힌트:
-- 딕셔너리 사용
-- 평균: sum(scores.values()) / len(scores)
-- 최고점: max(scores, key=scores.get)
 """
 
 def manage_grades(students):
@@ -40,11 +36,19 @@ def manage_grades(students):
     Returns:
         평균, 최고점 학생 이름, 최고점
     """
-    # TODO: 평균 점수 계산
+
+
+    average=sum(students.values())/len(students)
+
+    top_score=0
+    for key,value in students.items():
+        if top_score<value:
+            top_score=value
+            top_student=key
     pass
+
     
     
-    # TODO: 최고 점수 학생 찾기
     pass
     
     return average, top_student, top_score
@@ -60,7 +64,11 @@ def find_student_score(students, name):
     Returns:
         점수 (없으면 None)
     """
-    # TODO: students에서 name 찾기
+
+    score=students.get(name)
+    return score
+
+
     pass
 
 # 테스트 케이스
