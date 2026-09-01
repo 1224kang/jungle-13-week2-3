@@ -35,18 +35,27 @@ def partition(arr, low, high):
         피벗의 최종 위치 인덱스
     """
     # TODO: 피벗을 선택 (일반적으로 마지막 원소)
+    x=arr[high]
     pass
     
     # TODO: i는 작은 원소들의 마지막 인덱스를 추적
+    ### ⭐️ pivot보다 작은 원소를 하나도 발견하지 않은 상태라면 i가 0이 아니라 그보다 한칸 앞인 low-1이 적절.
+    i=low-1
     pass
     
     # TODO: low부터 high-1까지 순회하면서
     ## 현재 원소가 피벗보다 작거나 같으면:
     ##   1. i를 1 증가
     ##   2. arr[i]와 arr[j]를 교환
+
+    for j in range(low,high):
+        if arr[j]<=x:
+            i+=1 
+            arr[i],arr[j]=arr[j],arr[i]
     pass
     
     # TODO: 피벗을 올바른 위치(i+1)에 배치
+    arr[i+1],arr[high]=arr[high],arr[i+1]
     pass
     
     return i + 1
@@ -64,6 +73,12 @@ def quick_sort_helper(arr, low, high):
     ## 분할하여 피벗 인덱스 얻기
     ## 피벗 왼쪽 부분 재귀 정렬
     ## 피벗 오른쪽 부분 재귀 정렬
+
+    if low<high:
+        #피벗 인덱스
+        x=partition(arr,low,high)
+        quick_sort_helper(arr,low,x-1)
+        quick_sort_helper(arr,x+1,high)
     pass 
     
 
@@ -113,5 +128,4 @@ if __name__ == "__main__":
     result4 = quick_sort(arr4.copy())
     print(f"정렬 후: {result4}")
     print("이미 정렬된 경우 O(n²) 시간 소요 (최악의 경우)")
-
 
