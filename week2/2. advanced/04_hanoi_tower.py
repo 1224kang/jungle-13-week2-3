@@ -48,21 +48,21 @@
 - 0 <= N <= 1000 (hanoi_count)
 - 0 <= N <= 20  (hanoi_moves 는 이 범위에서만 실제 시퀀스를 반환)
 
-▣ 힌트 (재귀 아이디어)
-    move(k, src, via, dst):
-        if k == 0: return
-        move(k-1, src, dst, via)        # 위쪽 k-1개를 via 로
-        결과 리스트에 (src, dst) 추가   # 가장 큰 원반을 dst 로
-        move(k-1, via, src, dst)        # via 의 k-1개를 dst 로
+
 """
 
-
+# 하노이 최소 이동 횟수 
 def hanoi_count(n: int) -> int:
     """N 개의 원반을 옮기는 데 필요한 최소 이동 횟수( = 2^N - 1) 를 반환"""
-    # TODO: 2^N - 1 을 정수로 반환하세요.
+
+    if n==1: return 1
+    else:
+        return 2**n-1
+
     pass
 
 
+# 하노이 이동 순서 
 def hanoi_moves(n: int) -> list:
     """
     N <= 20 일 때 1번 -> 3번 기둥으로 옮기는 이동 순서를 리스트로 반환.
@@ -71,8 +71,22 @@ def hanoi_moves(n: int) -> list:
 
     예) hanoi_moves(2) == [(1, 2), (1, 3), (2, 3)]
     """
-    # TODO: N > 20 또는 N == 0 인 경우 [] 를 반환하세요.
-    # TODO: 그 외에는 재귀로 이동 순서를 만들어 반환하세요.
+
+    result=[]
+
+    if n==0 or n>20: return result
+    else:
+        # 개수, 출발 막대, 중간 막대, 최종 막대 
+        def move(k,src,via,dst):
+            if k==0: return 
+            move(k-1,src,dst,via)
+            result.append((src,dst))
+            move(k-1,via,src,dst)
+
+        move(n,1,2,3)
+    return result
+
+
     pass
 
 
