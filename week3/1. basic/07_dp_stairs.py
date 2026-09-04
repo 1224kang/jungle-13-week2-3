@@ -43,7 +43,12 @@ def climb_stairs(n):
     if n==1: return 1
     if n==2: return 2
 
-    dp[n]=climb_stairs(n-1)+climb_stairs(n-2)
+    # ✔️ 내가 푼 건 재귀(top-down) 방식
+    # ⭐️ 반복문(bottom-up) 방식으로 풀어야 함.. 
+    # dp[n]=climb_stairs(n-1)+climb_stairs(n-2)
+
+    for i in range(3,n+1):
+        dp[i]=dp[i-1]+dp[i-2]
 
     pass
     
