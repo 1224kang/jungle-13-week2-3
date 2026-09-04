@@ -39,7 +39,7 @@ class TreeNode:
 
 def preorder(root):
     """전위 순회: 루트 → 왼쪽 → 오른쪽"""
-    # 재귀 호출 될 때마다 result가 초기화되는 문제 발생 
+    # ⭐️ 재귀 호출 될 때마다 result가 초기화되는 문제 발생 
     result = []
 
     # 재귀 base 조건
@@ -49,7 +49,9 @@ def preorder(root):
 
     # 현재 root 값을 result에 추가 
     result.append(root.value)
+    # 왼쪽 서브트리를 전위순회하면서 얻은 값을 result 배열에 추가 
     if root.left: result+=preorder(root.left)
+    # 오른쪽 서브트리를 전위순회하면서 얻은 값을 result 배열에 추가 
     if root.right: result+=preorder(root.right)
 
 
@@ -71,7 +73,25 @@ def inorder(root):
     """중위 순회: 왼쪽 → 루트 → 오른쪽"""
     result = []
     
+    if root is None:
+        return result
+
     
+    # if root.left:
+    #     result+=inorder(root.left)
+    #     print(f"result:{result}")
+    #     result.append(root.left.value)
+
+
+    # if root.right:
+    #     result+=inorder(root)
+    #     print(f"result:{result}")
+    #     result.append(root.right.value)
+
+    if root.left: result+=inorder(root.left)
+    result.append(root.value)
+    if root.right:result+=inorder(root.right)
+
     pass
     
     
@@ -88,7 +108,13 @@ def inorder(root):
 def postorder(root):
     """후위 순회: 왼쪽 → 오른쪽 → 루트"""
     result = []
-    
+
+    if root is None:
+        return result
+
+    if root.left:result+=postorder(root.left)
+    if root.right:result+=postorder(root.right)
+    result.append(root.value)
     
     pass
     
