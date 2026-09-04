@@ -6,7 +6,7 @@
 - 간선(edge)을 추가하고 출력합니다.
 - 방향 그래프와 무방향 그래프를 구분합니다.
 
-입력:
+입력: 
 - vertices: 정점(vertex) 개수
 - edges: 간선 리스트
 
@@ -38,9 +38,21 @@ def create_graph(vertices, edges, directed=False):
     Returns:
         그래프 딕셔너리
     """
-    
-    pass
-    
+
+    # 딕셔너리 타입을 활용한 인접리스트 
+    graph={}
+    # 미리 사이즈를 정의해놔야 함 
+    for vertex in range(vertices):
+        graph[vertex]=[]
+
+    # 방향 그래프 
+    for a,b in edges:
+        # graph[a]=graph[b]
+        graph[a].append(b)
+
+        # 무방향 그래프
+        if directed==False:
+            graph[b].append(a)
     
     pass
     

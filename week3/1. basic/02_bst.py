@@ -36,6 +36,7 @@ class TreeNode:
         self.left = None
         self.right = None
 
+# ✔️ 반복문으로도 구현할 수 있음. 
 def search_bst(root, target):
     """
     BST에서 값 검색
@@ -61,7 +62,14 @@ def search_bst(root, target):
         return search_bst(root.left,target)
     else:
         return True
-    
+
+def search_bst2(root,target):
+    if root is None: return False
+
+    while True:
+        if root.value==target: return True
+        elif root.value>target: root=root.left
+        else: root=root.right
     pass
     
     
