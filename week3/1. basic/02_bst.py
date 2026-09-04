@@ -47,6 +47,17 @@ def search_bst(root, target):
     Returns:
         True/False
     """
+
+    if root is None: return False
+
+    if target>root.value:
+        # print(f"오른쪽 target:{target},root:{root.value}")
+        return search_bst(root.right,target)
+    if target<root.value:
+        # print(f"왼쪽 target:{target},root:{root.value}")
+        return search_bst(root.left,target)
+    else:
+        return True
     
     pass
     
