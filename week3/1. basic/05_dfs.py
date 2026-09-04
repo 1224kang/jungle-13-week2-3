@@ -39,6 +39,19 @@ def dfs(graph, start, visited=None):
     Returns:
         방문 순서 리스트
     """
+
+    if visited is None:
+        visited=[]
+
+    # 종료 조건
+    if start in visited:
+        return
+
+    # 첫 방문 장소 visited에 추가 
+    visited.append(start)
+    
+    for value in graph[start]:
+        dfs(graph,value,visited)
     
     pass
     
