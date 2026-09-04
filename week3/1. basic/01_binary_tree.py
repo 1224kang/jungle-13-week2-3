@@ -27,9 +27,7 @@
 중위: [4, 2, 5, 1, 3]
 후위: [4, 5, 2, 3, 1]
 
-힌트:
-- 재귀로 간단히 구현 가능
-- 순회 순서만 다름
+
 """
 
 class TreeNode:
@@ -41,18 +39,30 @@ class TreeNode:
 
 def preorder(root):
     """전위 순회: 루트 → 왼쪽 → 오른쪽"""
+    # 재귀 호출 될 때마다 result가 초기화되는 문제 발생 
     result = []
+
+    # 재귀 base 조건
+    # root.left로 끝까지 간 후, root.right 부터 다시 거꾸로 올라오면서 root로 설정 
+    if root is None: # 왜 root.left가 아닌, root를 검사? 
+        return result
+
+    # 현재 root 값을 result에 추가 
+    result.append(root.value)
+    if root.left: result+=preorder(root.left)
+    if root.right: result+=preorder(root.right)
+
+
     
-    # TODO: root가 None이면 빈 리스트 반환
     pass
     
-    # TODO: 루트 값 추가
+   
     pass
     
-    # TODO: 왼쪽 서브트리 순회
+   
     pass
     
-    # TODO: 오른쪽 서브트리 순회
+    
     pass
     
     return result
@@ -61,16 +71,16 @@ def inorder(root):
     """중위 순회: 왼쪽 → 루트 → 오른쪽"""
     result = []
     
-    # TODO: root가 None이면 빈 리스트 반환
+    
     pass
     
-    # TODO: 왼쪽 서브트리 순회
+    
     pass
     
-    # TODO: 루트 값 추가
+    
     pass
     
-    # TODO: 오른쪽 서브트리 순회
+    
     pass
     
     return result
@@ -79,16 +89,16 @@ def postorder(root):
     """후위 순회: 왼쪽 → 오른쪽 → 루트"""
     result = []
     
-    # TODO: root가 None이면 빈 리스트 반환
+    
     pass
     
-    # TODO: 왼쪽 서브트리 순회
+    
     pass
     
-    # TODO: 오른쪽 서브트리 순회
+    
     pass
     
-    # TODO: 루트 값 추가
+   
     pass
     
     return result

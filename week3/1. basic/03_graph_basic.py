@@ -23,9 +23,7 @@
 2 → [0, 1, 3]
 3 → [2]
 
-힌트:
-- 딕셔너리 사용: {정점: [연결된 정점들]}
-- 무방향 그래프는 양방향 추가
+
 """
 
 def create_graph(vertices, edges, directed=False):
@@ -40,12 +38,10 @@ def create_graph(vertices, edges, directed=False):
     Returns:
         그래프 딕셔너리
     """
-    # TODO: 빈 그래프 초기화
+    
     pass
     
-    # TODO: 간선 추가
-    ## 간선 추가 (u에서 v로)
-    ## 무방향 그래프면 반대 방향도 추가
+    
     pass
     
     return graph
