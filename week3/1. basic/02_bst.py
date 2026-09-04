@@ -52,7 +52,10 @@ def search_bst(root, target):
 
     if target>root.value:
         # print(f"오른쪽 target:{target},root:{root.value}")
-        return search_bst(root.right,target)
+
+        # ⭐️ 재귀 호출을 해놓고 return을 안함 
+        # 반환하지 않으면 재귀 호출에서 얻은 결과가 바깥 함수로 전달되지 않는다. 
+        return search_bst(root.right,target) 
     if target<root.value:
         # print(f"왼쪽 target:{target},root:{root.value}")
         return search_bst(root.left,target)
