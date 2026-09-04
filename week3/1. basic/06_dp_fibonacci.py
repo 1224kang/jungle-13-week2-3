@@ -15,10 +15,6 @@
 입력: n = 10
 출력: 55
 
-힌트:
-- 딕셔너리에 계산 결과 저장
-- 이미 계산했으면 저장된 값 반환
-- 계산 안 했으면 재귀 호출 후 저장
 
 설명:
 - 시간 복잡도: O(n) - 각 값을 한 번만 계산
@@ -45,7 +41,7 @@
                     fib(5)
                  /          \
             fib(4)            fib(3)
-           /      \          /      \
+           /     \          /      \
        fib(3)   fib(2)   fib(2)   fib(1)
        ...      ...      ...       ...
 총 계산: 15번 (중복 다수)
@@ -81,16 +77,42 @@ def fibonacci_memo(n, memo=None):
     Returns:
         n번째 피보나치 수
     """
-    # TODO: memo가 None이면 빈 딕셔너리로 초기화
+
+
+    # 종료 조건
+    if n==1: return 1
+    if n==0: return 0
+
+    # 처음에 memo 딕셔너리 정의
+
+    """
+    🚨 주의할 점 
+    list : 'memo[2]=값' 을 실행하려면 2번 인덱스가 이미 있어야 함 
+    dict : 'memo[2]=값' 을 실행하려면 2라는 키가 없어도 새로 생성 가능 
+    """
+    if memo is None:
+        memo={}
+
+    # 계산할 값이 이미 memo에 있으면 반환
+    if n in memo:
+        return memo[n]
+
+    # ⭐️ 재귀 호출하여 계산하고 memo에 저장 
+    # bottom-up 반복문 , top-down 재귀 
+    # ❌ fibonacci_memo(n-1)+fibonacci_memo(n-2)
+    memo[n]=fibonacci_memo(n-1,memo)+fibonacci_memo(n-2,memo)
+
+            
+    
     pass
     
-    # TODO: base case 
+    
     pass
     
-    # TODO: 이미 계산한 값이 memo에 있으면 반환
+   
     pass
     
-    # TODO: 재귀 호출하여 계산하고 memo에 저장
+    
     pass
     
     return memo[n]
