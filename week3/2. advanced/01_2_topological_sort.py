@@ -38,43 +38,37 @@ def topological_sort(vertices, edges):
     """
 
     queue=deque() 
-    arr=[0]*vertices #
+    indegree=[0]*vertices # 진입차수를 저장하는 역할 
+    edges_list=[[] for _ in range(vertices)]
+    result=[]
 
-    # 각 노드의 진입 차수를 큐 형태로 정리.
-    # index=노드 번호, 리스트 값 = 진입 차수 개수 
-    for edge in edges:
-        start,end=edge 
-        arr[end]+=1 #진입 차수를 큐에 추가
+    # 인접 리스트 만들기 
+    for start,end in edges:
+        edges_list[start].append(end)
 
-    # 큐에서 진입차수가 0인 것부터 꺼내서 위상 정렬 실행
-    for index in range(len(arr)):
-        if arr[index]==0: # 😨 중간에 새롭게 진입차수가 0이된 노드를 처리하지 못함
-            # 진입차수가 0인 걸 queue에 삽입 
-            queue.append(index)
+    # 진입 차수 계산 
+    for start,end in edges:
+        indegree[end]+=1
 
-            # edges에서 선택한 노드와 연결된 간선의 노드를 찾기 
-            for edge in edges:
-                start,end=edge
-                if start==index:
-                    arr[end]-=1 # 연결된 간선 제거
+    # ⭐️ 처음부터 진입 차수가 0인 노드 큐에 삽입 
+    for node in range(vertices):
+        if indegree[node]==0:
+            queue.append(node)
 
-    return list(queue)
-        
+    # 큐가 빌 때까지 반복 
+    while queue:
+        current=queue.popleft()
+        result.append(current)
 
-  
-    pass
-    
-  
-    pass
-    
-   
-    pass
-    
-  
-    
-   
-    pass
-    
+        # for start,end in edges:
+        for next_node in edges_list[current]:
+            # if start==current:
+                indegree[next_node]-=1 # 간선 제거 
+
+                # 새롭게 진입 차수가 0이 되면 큐에 추가 
+                if indegree[next_node]==0:
+                    queue.append(next_node)
+
     return result
 
 # 테스트 케이스

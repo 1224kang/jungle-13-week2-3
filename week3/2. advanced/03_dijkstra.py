@@ -49,17 +49,7 @@ dijkstra(n: int, edges: list[tuple[int, int, int]], start: int) -> list
 - 0 <= n <= 1000, 간선 수 <= 5000 정도면 충분.
 - 0 <= w <= 10000
 
-▣ 힌트 (heapq 사용, O((V+E) log V))
-  import heapq
-  - dist 를 INF 로 초기화하고 dist[start] = 0
-  - 우선순위 큐에 (0, start) 를 push
-  - 큐가 빌 때까지:
-      (d, u) = heappop
-      if d > dist[u]: continue     # 이미 더 짧은 경로로 처리됨
-      for v, w in graph[u]:
-          if dist[u] + w < dist[v]:
-              dist[v] = dist[u] + w
-              heappush(pq, (dist[v], v))
+
 """
 
 import heapq
@@ -71,14 +61,55 @@ INF = float('inf')
 def dijkstra(n: int, edges: list, start: int) -> list:
     """
     n: 정점 수 (정점 번호 0 ~ n-1)
-    edges: (u, v, w) 형식 방향 간선 리스트
+    edges: (u, v, w) 형식 방향 간선 리스트 : u=시작 정점, v=도착 정점, w=가중치 
     start: 출발 정점
     반환: 길이 n 의 거리 리스트 (도달 불가 = float('inf'))
     """
-    # TODO: 인접 리스트 graph 구성 (graph[u] = [(v, w), ...])
-    # TODO: dist 를 INF 로 초기화하고 dist[start] = 0
-    # TODO: 우선순위 큐(heapq)로 BFS-like 최단경로 탐색
-    # TODO: dist 반환
+
+    # 거리 저장 용 Dist 배열 
+    dist=[INF]*n
+
+    # 우선순위 큐 : 거리가 가장 가까운 걸 정의할 떄 사용
+    queue=[]
+
+    # 튜플 리스트 -> 인접 리스트로 변환 
+    graph=[[] for _ in range(n)]
+    for u,v,w in edges:
+        graph[u].append((v,w))
+
+    # 시작점 설정 
+    dist[start]=0
+    heapq.heappush(queue,(0,start)) #우선순위 큐에는 (현재까지의 거리, 노드)
+
+    # 큐 내부가 텅 빌 때까지 
+    while queue:
+        
+        # 최소값을 뽑기 
+        current_distance,current_node=heapq.heappop(queue)
+
+        # 기존 Dist 배열에 있던 거리가 더 짧다;
+        if current_distance>dist[current_node]:
+            continue
+
+        # 현재 노드와 연결된 노드 확인 
+        for next_node,weight in graph[current_node]:
+            new_dist=weight+dist[current_node]
+
+            # 새로 계산한 거리가 더 짧으면 dist 업데이트, 큐에 Push
+            if dist[next_node]>new_dist:    
+                dist[next_node]=new_dist
+                heapq.heappush(queue,(new_dist,next_node))
+
+
+
+    return dist
+
+
+
+
+
+   
+
     pass
 
 
