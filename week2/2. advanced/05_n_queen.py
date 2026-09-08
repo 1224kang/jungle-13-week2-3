@@ -68,6 +68,37 @@ def n_queens(n: int) -> int:
     #       ...
     #   place(0)
     #   return count
+
+    cols=[0]*n
+    count=0
+
+    def place(row):
+      global count
+
+      if row==n: return
+
+      # 현재 row에서 가능한 열을 하나씩 시도 
+      for c in range(n):
+
+          for i in range(row):
+
+              # 같은 열 충돌
+              if cols[i]==c:
+                  break
+
+              # 대각선 충돌
+              if abs(cols[i]-c)==row-i:
+                  break
+
+          # 충돌하지 않는 경우 
+          else:
+              cols[row]=c
+              place(row+1)
+              
+              
+          
+    place(0)
+    return count
     pass
 
 
